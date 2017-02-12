@@ -1,18 +1,25 @@
-# macos-userlibrary-migration# Migrating macOS user settings
+# Migrating macOS user settings
 
+## Overview
 Most peaple are just fine copying their data and settings from one macOS installation to another by just using the migration tool. I did this for 10 years now, never had a problem. By now, some failures slowly creep in, resulting in some applications to take very long time to finish their stuff.
-In case you want to have a clean start, you need to run a manual migration of you data and settings.  As far as concerning you user data, follow the [guide which Matt Gemmel wrote](http://mattgemmell.com/manually-migrating-to-a-new-mac/). For migration of you settings (mail accounts, signatures, adressbook, calendars), you need to migrate you "User Library" and this is what this article is about.
+In case you want to have a clean start, you need to run a manual migration of you data and settings.  As far as concerning you user data, follow the [guide which Matt Gemmel wrote](http://mattgemmell.com/manually-migrating-to-a-new-mac/).
 
-## Migrating the library
-Tested on macOS `Sierra`, make sure source and target os have the same version.
+For migration of your settings (mail accounts, signatures, adressbook, calendars), you need to migrate you "User Library" and this is what this article is about.
 
-### Keychain
-The KeyChain holds your passwords. I did not copy it over this process to prevent possible account corruption.  If you’ve forgotten some passwords you can use the Keychain Utility (located inside `/Applications/Utilities`) to view the contents of your old user keychain.  
+The process shown here has been tested on macOS `Sierra`, make sure source and target macOS installation have the same version.
+
+## Password database migration
+
+The KeyChain holds your passwords. I did not copy the keychain file over in this process to prevent possible account corruption.  If you’ve forgotten some passwords you can copy your old keychain to a temporary place on your new installation and use the Keychain Utility (located inside `/Applications/Utilities`) to view the contents of your old user keychain.  
 
 The keychain file can be found on the old drive at: `~/Library/Keychains/login.keychain`.
 
-### Prepare library settings transfer
-Assume you want to export your settings to `Library2` directory in your home directory:
+## Export old library settings
+Copying of settings to USB stick or network drive
+
+### Preparation
+Assuming you want to export your settings to `Library2` directory in your home directory, prepare an export directory structure like:
+
 ```
 mkdir ~/Library2
 mkdir ~/Library2/Containers
@@ -20,9 +27,9 @@ mkdir ~/Library2/Preferences
 mkdir ~/Library2/SyncedPreferences
 ```
 
-### mail, calendar, addressbook and internet accounts
+### Mail, calendar, addressbook and internet accounts
 
-* see [apple forum](https://discussions.apple.com/thread/7312611?tstart=0):
+See [apple forum](https://discussions.apple.com/thread/7312611?tstart=0) for details, this worked for me:
 
 ```
 cp -a ~/Library/Accounts ~/Library2/
@@ -75,4 +82,15 @@ cp -a ~/Library/Preferences/com.teamviewer.teamviewer.preferences.plist ~/Librar
 cp -a ~/Library/Preferences/cx.c3.Xee3.plist ~/Library2/Preferences/
 ```
 
+## Import exported library contents to new installation
 
+This can be done right after account creation, before first user login (from your administrative initial user account, which is not meant for every-day use). 
+Just copy you exported library stuff from USB stick or network drive into the new library directory of the newly created user and adapt permissions:
+
+```
+mkdir <new-user-home>/Library
+cp -a Library2/* <new-user-home>/Library/
+chown -R <new-user> <new-user-home>/Library/
+```
+
+After login with the new account, you will be asked for some passwords and are ready to go.
