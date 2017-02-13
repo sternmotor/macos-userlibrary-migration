@@ -1,8 +1,8 @@
 # Migrating macOS user settings
 
 ## Overview
-Most peaple are just fine copying their data and settings from one macOS installation to another by just using the migration tool. I did this for 10 years now, never had a problem. By now, some failures slowly creep in, resulting in some applications to take very long time to finish their stuff.
-In case you want to have a clean start, you need to run a manual migration of you data and settings.  As far as concerning you user data, follow the [guide which Matt Gemmel wrote](http://mattgemmell.com/manually-migrating-to-a-new-mac/).
+Most peaple are just fine copying their data and settings from one macOS installation to another by just using the migration tool. I did this for several years now, never had a problem. Now my harddrive failed without prediction, due to some I/O errors parts of the library rendered unusable. I needed a fresh start with my user directory. This is what I found out:
+As far as concerning you user data, follow the [guide which Matt Gemmel wrote](http://mattgemmell.com/manually-migrating-to-a-new-mac/).
 
 For migration of your settings (mail accounts, signatures, adressbook, calendars), you need to migrate you "User Library" and this is what this article is about.
 
