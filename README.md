@@ -1,4 +1,6 @@
-# Migrating macOS user settings
+# macos-userlibrary-migration
+
+Helper for migration of macOS user settings
 
 ## Overview
 Most peaple are just fine copying their data and settings from one macOS installation to another by just using the migration tool. I did this for several years now, never had a problem. Now my harddrive failed without prediction, due to some I/O errors parts of the library rendered unusable. I needed a fresh start with my user directory. This is what I found out:
